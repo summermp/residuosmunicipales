@@ -229,10 +229,10 @@ elif option == 'Nosotros':
     nosotros()
 st.sidebar.markdown("""
 **Integrantes:**
-- Item 1
-- Item 2
-- Item 3
-- Item 4
+- Ugarte Cruz Alessandra
+- Nicolas Chuquista Rivadeneira
+- Pacheco Seminario Luciana Ginella
+- José Pereira
 """)
 
 st.sidebar.write("Ingenieria ambiental - 2024")
