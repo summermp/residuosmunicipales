@@ -1,4 +1,4 @@
-﻿import pandas as pd
+import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 st.set_page_config(page_title="DISPOSICIÓN FINAL DE RRSS") # Nombre para configurar la pagina web
 # st.write('##### DISPOSICIÓN FINAL DE RESIDUOS SÓLIDOS MUNICIPALES EN EL PERÚ') #Va a ser el titulo de la pagina
 st.header('DISPOSICIÓN FINAL DE RESIDUOS SÓLIDOS MUNICIPALES EN EL PERÚ') #Va a ser el titulo de la pagina
-st.subheader('¿Qué cantidad de RRSS generan las comunidades del país?') #Subtitulo
+# st.subheader('¿Qué cantidad de RRSS generan las comunidades del país?') #Subtitulo
 
 csv_file = '2a_Dataset_Disposicion_final_de_RRSS_V2.0.csv'
 
@@ -118,7 +118,7 @@ def residuos_departamento_anio():
 
 def total_sitios_disposicion_final():
     # Título de la aplicación
-    st.markdown('**Filtrar y Contar Sitios de Disposición Final Adecuada**')
+    st.markdown('**Filtrar y Sumar Disposición Final Adecuada por Sitios**')
 
     # Filtrar por DEPARTAMENTO
     departamento_seleccionado = st.selectbox('Seleccione el Departamento', df['DEPARTAMENTO'].unique())
@@ -141,19 +141,74 @@ def total_sitios_disposicion_final():
         x='NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA',
         y='DISPOSICION_FINAL_ADECUADA',
         color='NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA',
-        title='Suma de Disposición Final Adecuada por Sitio'
+        title='Total de Disposición Final Adecuada por Sitio'
     )
 
     # Mostrar el gráfico en Streamlit
     st.plotly_chart(fig)
-
+    st.info("Esta grafica muestra la cantidad de residuos solidos depositados en un sitio de disposicion final adeacuada", icon='😍')
     # Opcional: Mostrar el DataFrame filtrado
     st.write('DataFrame Filtrado:', df_filtrado)
 
 def acerca():
-    # st.markdown('**¿Qué cantidad de RRSS generan las comunidades del país?**') #Subtitulo
-    # st.write("Dashboard sobre residuos municipales")
-    st.image("https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s")
+    # Título principal sobre una imagen
+    st.image('imagen_titulo.jpeg', use_column_width=True)
+
+    st.markdown('<div class="espacio-arriba"></div>', unsafe_allow_html=True)  # Espacio personalizado
+
+
+    # Introducción del proyecto
+    st.write("""
+    Bienvenidos a nuestra página web, donde presentaremos información importante sobre la disposicion de los RRSS, incluyendo gráficos y análisis de datos.
+    """)
+    st.markdown('<div class="espacio-arriba"></div>', unsafe_allow_html=True)  # Espacio personalizado
+
+
+    # Textito primera columna
+
+    st.header('Introducción')
+    st.write('La disposición final es la última etapa en el manejo de RRSS y comprende al conjunto de operaciones destinadas a lograr el depósito permanente de los residuos sólidos urbanos, producto de las fracciones de rechazo inevitables resultantes de los métodos de valorización adoptados.')
+    st.write('La disposición de residuos sólidos representa uno de los desafíos ambientales más urgentes en la actualidad. La acumulación y manejo inadecuado de estos desechos no solo afectan la estética de nuestras ciudades, sino que también generan serios problemas de salud pública y contaminación ambiental. Abordar esta problemática es crucial para garantizar un entorno limpio y saludable para las generaciones futuras. El manejo adecuado de residuos no solo implica la recolección y eliminación eficiente, sino también la implementación de estrategias de reducción, reutilización y reciclaje que minimicen el impacto ambiental.')
+    st.markdown('<div class="espacio-arriba"></div>', unsafe_allow_html=True)  # Espacio personalizado
+    # Imagen segunda columna
+
+    st.image('plan_manejo.jpeg', caption='Extraído de Google', use_column_width=True)
+    st.markdown('<div class="espacio-arriba"></div>', unsafe_allow_html=True)  # Espacio personalizado
+
+    # Texto horizontal después de las columnas
+    st.write("""
+    Aquí describimos los objetivos del proyecto. Queremos demostrar cómo utilizar Streamlit para crear una página web interactiva.
+    """)
+    st.markdown('<div class="espacio-arriba"></div>', unsafe_allow_html=True)  # Espacio personalizado
+
+    # División en tres columnas para los objetivos
+    st.header('Tipos de residuos solidos (RRSS)')
+    st.write('Los residuos sólidos son materiales desechados que ya no tienen valor para el usuario. Estos pueden ser de origen doméstico, industrial, comercial, entre otros.')
+    # Columnas para los objetivos
+    st.image("tipos_residuos.jpeg")
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.subheader('Organicos')
+        st.write("""
+        La visión del proyecto es implementar prácticas sostenibles para la disposición final de residuos sólidos en los diferentes departamentos del Perú.
+        """)
+
+    with col2:
+        st.subheader('Inorganicos')
+        st.write("""
+        La misión es educar a la población sobre la importancia de la correcta disposición de residuos y promover políticas ambientales efectivas.
+        """)
+
+    with col3:
+        st.subheader('Peligrosos')
+        st.write("""
+        El objetivo es reducir el impacto ambiental de los residuos sólidos mediante la implementación de nuevas tecnologías y metodologías.
+        """)
+
+    st.write("""
+    Lo que se busca con este proyecto es que en base a una base de datos (dataset) cualquiera pueda acceder para ver como en los diferentes departamentos del pais los residuos solidos son administrados :)
+    """) 
     
 def nosotros():
     st.write("Somos estudiantes de la UPCH de la carrera de ingenieria ambiental")
